@@ -1,0 +1,2 @@
+# python_serializer_comparison
+pythonで使えるシリアライザーの比較を行うリポジトリ
