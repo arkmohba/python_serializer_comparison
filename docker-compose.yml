@@ -1,0 +1,10 @@
+services:
+  comparison:
+    image: pythonserializercomparison
+    volumes:
+      - ./src:/opt/work
+    working_dir: /opt/work
+    shm_size: '2gb'
+    tty: true
+    command: bash
+    

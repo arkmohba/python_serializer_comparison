@@ -1,0 +1,4 @@
+table Data {
+    data_array: [float];
+}
+root_type Data;

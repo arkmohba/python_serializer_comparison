@@ -1,0 +1,11 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+flatbuffers
+pycapnp
+numpy
+torch
+torchvision
+torchaudio
+tqdm
+protobuf
+joblib
+autopep8
