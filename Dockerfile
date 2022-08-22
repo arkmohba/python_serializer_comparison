@@ -29,7 +29,7 @@ WORKDIR /tmp
 #     && rm -r capnproto-c++-0.10.2
 
 RUN mkdir protoc && cd protoc \
-    && wget wget https://github.com/protocolbuffers/protobuf/releases/download/v21.5/protoc-21.5-linux-x86_64.zip \
+    && wget https://github.com/protocolbuffers/protobuf/releases/download/v21.5/protoc-21.5-linux-x86_64.zip \
     && unzip protoc-21.5-linux-x86_64.zip \
     && cp -f bin/protoc /usr/bin \
     && cd .. \
