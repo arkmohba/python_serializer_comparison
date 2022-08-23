@@ -4,7 +4,7 @@ import numpy as np
 import time
 from typing import Callable
 import os
-from utils import load_protobuf, load_pickle, load_flatbuffers
+from utils import load_protobuf, load_pickle, load_flatbuffers, load_capnp
 
 class LoadDataset(Dataset):
     def __init__(self, data_dir: str, data_reader: Callable) -> None:
@@ -25,10 +25,11 @@ def load_np(file_path: str):
     return np.load(file_path)
 
 def main():
-    dataset = LoadDataset("data/np32", load_np)
-    dataset = LoadDataset("data/pkl32", load_pickle)
-    dataset = LoadDataset("data/pb32", load_protobuf)
-    dataset = LoadDataset("data/fb32", load_flatbuffers)
+    # dataset = LoadDataset("data/np32", load_np)
+    # dataset = LoadDataset("data/pkl32", load_pickle)
+    # dataset = LoadDataset("data/pb32", load_protobuf)
+    # dataset = LoadDataset("data/fb32", load_flatbuffers)
+    dataset = LoadDataset("data/capnp32", load_capnp)
         
     dataloader = DataLoader(
         dataset, 

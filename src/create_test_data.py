@@ -4,7 +4,7 @@ import shutil
 from tqdm import tqdm
 import joblib
 
-from utils import save_pickle, save_flatbuffers, save_protobuf
+from utils import save_pickle, save_flatbuffers, save_protobuf, save_capnp
 
 def duplicates(input_file: str, n_duplicate: int):
     prefix, suffix = os.path.splitext(input_file)
@@ -23,26 +23,35 @@ def main():
     os.makedirs(fb_dir, exist_ok=True)
     pb_dir = os.path.join(data_dir, "pb32")
     os.makedirs(pb_dir, exist_ok=True)
+    capnp_dir = os.path.join(data_dir, "capnp32")
+    os.makedirs(capnp_dir, exist_ok=True)
 
-    data: np.ndarray = np.random.rand(3840 * 2048 * 3)
+    data: np.ndarray = np.random.rand(3840*2160*3)
     data_32 = data.astype(np.float32)
     
     # # Numpy
     # f_path = os.path.join(np_dir, "data.npy")
     # np.save(f_path, data_32)
+    # duplicates(f_path, 100)
     
     # # Pickle
     # f_path = os.path.join(pkl_dir, "data.pkl")
     # save_pickle(f_path, data_32)
+    # duplicates(f_path, 100)
 
     # # Flatbuffers
     # f_path = os.path.join(fb_dir, "data.fb")
     # save_flatbuffers(f_path, data_32)
     # duplicates(f_path, 100)
 
-    # Protobuf
-    f_path = os.path.join(pb_dir, "data.pb")
-    save_protobuf(f_path, data_32)
+    # # Protobuf
+    # f_path = os.path.join(pb_dir, "data.pb")
+    # save_protobuf(f_path, data_32)
+    # duplicates(f_path, 100)
+
+    # Capnproto
+    f_path = os.path.join(capnp_dir, "data.capnp")
+    save_capnp(f_path, data_32)
     duplicates(f_path, 100)
 
 if __name__ == "__main__":

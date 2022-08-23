@@ -3,6 +3,8 @@ import pickle
 import flatbuffers
 import myflat.Data as Data
 import myprotobuf.data_pb2 as data_pb2
+import capnp
+import mycapnp.data_capnp as data_capnp
 
 
 def save_pickle(f_path: str, data: np.ndarray):
@@ -52,3 +54,21 @@ def load_protobuf(f_path: str):
     pb_obj = data_pb2.Data()
     pb_obj.ParseFromString(buf)
     return np.array(pb_obj.data_array)
+
+
+def save_capnp(f_path: str, data: np.ndarray):
+    data_cp = data_capnp.Data.new_message()
+    data_array_cp = data_cp.init('dataArray', len(data))
+    for i in range(len(data)):
+        data_array_cp[i] = float(data[i])
+    buf = data_cp.to_bytes()
+    with open(f_path, "wb") as f:
+        f.write(buf)
+
+
+def load_capnp(f_path: str):
+    with open(f_path, "rb") as f:
+        # buf = f.read()
+        # data = data_capnp.Data.from_bytes(buf)
+        data = data_capnp.Data.read(f, traversal_limit_in_words=3840*2160*3)
+    return np.array(data.dataArray)
