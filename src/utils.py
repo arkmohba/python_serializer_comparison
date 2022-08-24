@@ -12,7 +12,7 @@ def save_pickle(f_path: str, data: np.ndarray):
         pickle.dump(data, f)
 
 
-def load_pickle(f_path: str, data: np.ndarray):
+def load_pickle(f_path: str):
     with open(f_path, mode="rb") as f:
         data = pickle.load(f)
     return data
